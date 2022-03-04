@@ -22,23 +22,28 @@
 </template>
 
 <script>
+import { addDoc, collection } from '@firebase/firestore'
+import { db } from '../plugins/firebase'
+const usersCollectionRef = collection(db, 'blogs')
+
 export default {
   name: 'BlogForm',
   data () {
     return {
       title: '',
-      content: '',
-      message: ''
+      content: ''
     }
   },
   methods: {
     addBlog () {
-      if (this.title && this.content) {
-        const blog = { title: this.title, content: this.content }
-        this.$emit('add', blog)
-        this.message = this.title + 'が追加されました。'
-        this.title = ''
-        this.content = ''
+      if (this.title.trim() && this.content.trim()) {
+        addDoc(usersCollectionRef, {
+          title: this.title,
+          content: this.content
+        }).then(() => {
+          this.title = ''
+          this.content = ''
+        })
       }
     }
   }

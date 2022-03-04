@@ -6,8 +6,6 @@
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  data () {
-  }
+  name: 'DefaultLayout'
 }
 </script>

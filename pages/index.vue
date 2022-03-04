@@ -20,17 +20,17 @@
 
 <script>
 export default {
-  name: 'IndexPage',
-  data () {
-    return {
-      drawer: false,
-      blogs: []
-    }
-  },
-  methods: {
-    addEvent (blog) {
-      this.blogs.push(blog)
-    }
-  }
+  name: 'IndexPage'
+  // data () {
+  //   return {
+  //     drawer: false,
+  //     blogs: []
+  //   }
+  // },
+  // methods: {
+  //   addEvent (blog) {
+  //     this.blogs.push(blog)
+  //   }
+  // }
 }
 </script>

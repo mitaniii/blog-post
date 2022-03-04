@@ -10,10 +10,26 @@
 </template>
 
 <script>
+import { collection, onSnapshot } from '@firebase/firestore'
+import { db } from '../plugins/firebase'
+const usersCollectionRef = collection(db, 'blogs')
+
 export default {
   name: 'BlogList',
-  props: {
-    blogs: { type: Array, default: null }
+  data () {
+    return {
+      blogs: [],
+      title: '',
+      content: ''
+    }
+  },
+  // props: {
+  //   blogs: { type: Array, default: null }
+  // },
+  mounted () {
+    onSnapshot(usersCollectionRef, (querySnapshot) => {
+      this.blogs = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+    })
   }
 }
 </script>
