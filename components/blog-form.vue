@@ -1,29 +1,37 @@
 <template>
   <v-container>
     <v-form @submit.prevent="addBlog">
-      <v-row>
-        <v-col cols="12" sm="10">
-          <v-text-field v-model="title" label="Title" />
-        </v-col>
-        <v-col cols="12" sm="10">
-          <v-textarea v-model="content" label="Content" />
-        </v-col>
-        <v-col cols="12" sm="10">
-          <v-btn type="submit" color="primary">
-            Submit
-          </v-btn>
-        </v-col>
-        <v-col cols="12">
-          {{ message }}
-        </v-col>
-      </v-row>
+      <div v-if="user">
+        <p>{{ user.displayName }}</p>
+        <v-btn @click="logout">
+          ログアウト
+        </v-btn>
+        <v-row>
+          <v-col cols="12" sm="10">
+            <v-text-field v-model="title" label="Title" />
+          </v-col>
+          <v-col cols="12" sm="10">
+            <v-textarea v-model="content" label="Content" />
+          </v-col>
+          <v-col cols="12" sm="10">
+            <v-btn type="submit" color="primary">
+              Submit
+            </v-btn>
+          </v-col>
+          <v-col cols="12">
+            {{ message }}
+          </v-col>
+        </v-row>
+      </div>
+      <div v-else />
     </v-form>
   </v-container>
 </template>
 
 <script>
+import { onAuthStateChanged, signOut } from '@firebase/auth'
 import { addDoc, collection } from '@firebase/firestore'
-import { db } from '../plugins/firebase'
+import { auth, db } from '../plugins/firebase'
 const usersCollectionRef = collection(db, 'blogs')
 
 export default {
@@ -31,8 +39,14 @@ export default {
   data () {
     return {
       title: '',
-      content: ''
+      content: '',
+      user: ''
     }
+  },
+  mounted () {
+    onAuthStateChanged(auth, (user) => {
+      this.user = user
+    })
   },
   methods: {
     addBlog () {
@@ -45,6 +59,9 @@ export default {
           this.content = ''
         })
       }
+    },
+    logout () {
+      signOut(auth).then(() => (this.user = null))
     }
   }
 }
