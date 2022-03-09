@@ -30,16 +30,21 @@
 
 <script>
 import { onAuthStateChanged, signOut } from '@firebase/auth'
-import { addDoc, collection } from '@firebase/firestore'
+import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
 import { auth, db } from '../plugins/firebase'
 const usersCollectionRef = collection(db, 'blogs')
 
 export default {
-  name: 'BlogForm',
+  name: 'BlogUpdate',
+  props: {
+    blog: {
+      type: Object, default: null
+    }
+  },
   data () {
     return {
-      title: '',
-      content: '',
+      title: this.blog.title,
+      content: this.blog.content,
       user: ''
     }
   },
@@ -53,7 +58,8 @@ export default {
       if (this.title.trim() && this.content.trim()) {
         addDoc(usersCollectionRef, {
           title: this.title,
-          content: this.content
+          content: this.content,
+          timestamp: serverTimestamp()
         }).then(() => {
           this.title = ''
           this.content = ''

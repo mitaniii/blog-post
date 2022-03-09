@@ -7,6 +7,18 @@
             <v-card>
               <v-subheader>{{ blog.title }}</v-subheader>
               <v-list-item>{{ blog.content }}</v-list-item>
+              <v-list-item>{{ blog.timestamp }}</v-list-item>
+              <v-btn @click="remove(blog.id)">
+                <v-icon small>
+                  mdi-delete
+                </v-icon>
+              </v-btn>
+              <v-btn @click="isUpdate = !isUpdate">
+                <v-icon small>
+                  mdi-update
+                </v-icon>
+              </v-btn>
+              <blog-update v-show="isUpdate" :blog="blog" />
             </v-card>
           </v-list>
           <v-pagination v-model="page" :length="length" @input="pageChange" />
@@ -17,7 +29,7 @@
 </template>
 
 <script>
-import { collection, onSnapshot } from '@firebase/firestore'
+import { collection, deleteDoc, doc, onSnapshot } from '@firebase/firestore'
 import { db } from '../plugins/firebase'
 const usersCollectionRef = collection(db, 'blogs')
 
@@ -31,7 +43,8 @@ export default {
       length: 0,
       blogs: [],
       displayBlogs: [],
-      pageSize: 3
+      pageSize: 3,
+      isUpdate: false
     }
   },
   mounted () {
@@ -47,6 +60,13 @@ export default {
     // }
     pageChange (pageNumber) {
       this.displayBlogs = this.blogs.slice(this.pageSize * (pageNumber - 1), this.pageSize * (pageNumber))
+    },
+    remove (id) {
+      const userDocumentRef = doc(db, 'blogs', id)
+      deleteDoc(userDocumentRef)
+    },
+    update () {
+
     }
   }
 }
