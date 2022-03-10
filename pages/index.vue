@@ -88,7 +88,7 @@ export default {
           to: '/signup'
         },
         {
-          icon: '',
+          icon: 'mdi-message-text',
           title: 'blogform',
           to: '/blog-form'
         }
@@ -101,6 +101,7 @@ export default {
     })
     onSnapshot(usersCollectionRef, (querySnapshot) => {
       this.blogs = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+      this.blogs.sort((a, b) => b.timestamp - a.timestamp)
       this.length = Math.ceil(this.blogs.length / this.pageSize)
       this.displayBlogs = this.blogs.slice(0, this.pageSize)
     })
@@ -115,9 +116,6 @@ export default {
     remove (id) {
       const userDocumentRef = doc(db, 'blogs', id)
       deleteDoc(userDocumentRef)
-    },
-    update () {
-
     }
   }
 }
