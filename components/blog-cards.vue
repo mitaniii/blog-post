@@ -16,3 +16,23 @@
     <blog-update v-show="isUpdate" :blog="blog" />
   </v-card>
 </template>
+
+<script>
+export default {
+  name: 'BlogCards',
+  props: {
+    blog: {
+      type: Object, default: null
+    }
+  },
+  data () {
+    return {
+      isUpdate: false
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>
