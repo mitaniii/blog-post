@@ -95,6 +95,8 @@ export default {
         addDoc(usersCollectionRef, {
           title: this.title,
           content: this.content,
+          userUid: this.user.uid,
+          userDisplayName: this.user.displayName,
           timestamp: serverTimestamp()
         }).then(() => {
           this.title = ''

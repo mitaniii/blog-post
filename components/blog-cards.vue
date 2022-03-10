@@ -1,8 +1,9 @@
 <template>
   <v-card>
-    <v-subheader>{{ blog.title }}</v-subheader>
-    <v-list-item>{{ blog.content }}</v-list-item>
-    <v-list-item>{{ blog.timestamp.toDate() }}</v-list-item>
+    <v-subheader>{{ blog.userDisplayName }}さんの投稿</v-subheader>
+    <v-subheader>タイトル：{{ blog.title }}</v-subheader>
+    <v-list-item>記事：{{ blog.content }}</v-list-item>
+    <v-list-item>更新：{{ blog.timestamp.toDate() }}</v-list-item>
     <v-btn @click="remove(blog.id)">
       <v-icon small>
         mdi-delete
@@ -13,7 +14,7 @@
         mdi-update
       </v-icon>
     </v-btn>
-    <BlogUpdate v-show="isUpdate" :blog="blog" />
+    <BlogUpdate v-show="isUpdate" :blog="blog" @close="closeUpdateForm" />
   </v-card>
 </template>
 
@@ -41,6 +42,9 @@ export default {
     remove (id) {
       const userDocumentRef = doc(db, 'blogs', id)
       deleteDoc(userDocumentRef)
+    },
+    closeUpdateForm () {
+      this.isUpdate = false
     }
   }
 }

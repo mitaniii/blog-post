@@ -24,7 +24,7 @@
 
 <script>
 import { onAuthStateChanged } from '@firebase/auth'
-import { doc, updateDoc } from '@firebase/firestore'
+import { doc, serverTimestamp, updateDoc } from '@firebase/firestore'
 import { auth, db } from '../plugins/firebase'
 
 export default {
@@ -52,11 +52,12 @@ export default {
         const userDocumentRef = doc(db, 'blogs', this.blog.id)
         updateDoc(userDocumentRef, {
           title: this.title,
-          content: this.content
+          content: this.content,
+          timestamp: serverTimestamp()
         }).then(() => {
-          this.title = ''
-          this.content = ''
-          this.$router.push('/')
+          // this.title = ''
+          // this.content = ''
+          this.$emit('close')
         })
       }
     }
