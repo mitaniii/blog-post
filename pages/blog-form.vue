@@ -18,9 +18,9 @@
     </v-navigation-drawer>
     <v-app-bar app>
       <v-toolbar-title class="mx-auto">
-        <h1>
+        <v-btn to="/">
           Blog-Post-App
-        </h1>
+        </v-btn>
       </v-toolbar-title>
       <v-toolbar-subtitle v-if="user">
         <p>
