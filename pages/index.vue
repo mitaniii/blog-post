@@ -42,24 +42,6 @@
         <v-app>
           <v-content>
             <div class="text-center">
-              <!-- <v-list v-for="blog in displayBlogs" :key="blog.index">
-                <v-card>
-                  <v-subheader>{{ blog.title }}</v-subheader>
-                  <v-list-item>{{ blog.content }}</v-list-item>
-                  <v-list-item>{{ blog.timestamp }}</v-list-item>
-                  <v-btn @click="remove(blog.id)">
-                    <v-icon small>
-                      mdi-delete
-                    </v-icon>
-                  </v-btn>
-                  <v-btn @click="isUpdate = !isUpdate">
-                    <v-icon small>
-                      mdi-update
-                    </v-icon>
-                  </v-btn>
-                  <blog-update v-show="isUpdate" :blog="blog" />
-                </v-card>
-              </v-list> -->
               <BlogCards v-for="blog in displayBlogs" :key="blog.index" :blog="blog" />
               <v-pagination v-model="page" :length="length" @input="pageChange" />
             </div>

@@ -50,7 +50,7 @@
               </v-col>
               <v-col cols="12" sm="10">
                 <v-btn type="submit" color="primary">
-                  Submit
+                  投稿
                 </v-btn>
               </v-col>
               <v-col cols="12">

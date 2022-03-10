@@ -13,17 +13,22 @@
         mdi-update
       </v-icon>
     </v-btn>
-    <blog-update v-show="isUpdate" :blog="blog" />
+    <BlogUpdate v-show="isUpdate" :blog="blog" />
   </v-card>
 </template>
 
 <script>
+import BlogUpdate from '../pages/blog-update'
+
 export default {
   name: 'BlogCards',
   props: {
     blog: {
       type: Object, default: null
     }
+  },
+  components: {
+    BlogUpdate
   },
   data () {
     return {

@@ -1,11 +1,8 @@
 <template>
   <v-container>
-    <v-form @submit.prevent="addBlog">
+    <v-form @submit.prevent="updateBlog">
       <div v-if="user">
-        <p>{{ user.displayName }}</p>
-        <v-btn @click="logout">
-          ログアウト
-        </v-btn>
+        - - - - - - - - - - - - - - ブログ更新- - - - - - - - - - - - - -
         <v-row>
           <v-col cols="12" sm="10">
             <v-text-field v-model="title" label="Title" />
@@ -15,11 +12,8 @@
           </v-col>
           <v-col cols="12" sm="10">
             <v-btn type="submit" color="primary">
-              Submit
+              更新
             </v-btn>
-          </v-col>
-          <v-col cols="12">
-            {{ message }}
           </v-col>
         </v-row>
       </div>
@@ -29,10 +23,9 @@
 </template>
 
 <script>
-import { onAuthStateChanged, signOut } from '@firebase/auth'
-import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
+import { onAuthStateChanged } from '@firebase/auth'
+import { doc, serverTimestamp, updateDoc } from '@firebase/firestore'
 import { auth, db } from '../plugins/firebase'
-const usersCollectionRef = collection(db, 'blogs')
 
 export default {
   name: 'BlogUpdate',
@@ -54,20 +47,19 @@ export default {
     })
   },
   methods: {
-    addBlog () {
+    updateBlog () {
       if (this.title.trim() && this.content.trim()) {
-        addDoc(usersCollectionRef, {
+        const userDocumentRef = doc(db, 'blogs', this.blog.id)
+        updateDoc(userDocumentRef, {
           title: this.title,
           content: this.content,
           timestamp: serverTimestamp()
         }).then(() => {
           this.title = ''
           this.content = ''
+          this.$router.push('/')
         })
       }
-    },
-    logout () {
-      signOut(auth).then(() => (this.user = null))
     }
   }
 }
