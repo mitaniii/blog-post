@@ -4,23 +4,27 @@
     <v-subheader>タイトル：{{ blog.title }}</v-subheader>
     <v-list-item>記事：{{ blog.content }}</v-list-item>
     <v-list-item>更新：{{ blog.timestamp.toDate() }}</v-list-item>
-    <v-btn @click="remove(blog.id)">
-      <v-icon small>
-        mdi-delete
-      </v-icon>
-    </v-btn>
-    <v-btn @click="isUpdate = !isUpdate">
-      <v-icon small>
-        mdi-update
-      </v-icon>
-    </v-btn>
-    <BlogUpdate v-show="isUpdate" :blog="blog" @close="closeUpdateForm" />
+    <div v-if="user && blog.userUid === user.uid">
+      <v-btn @click="remove(blog.id)">
+        <v-icon small>
+          mdi-delete
+        </v-icon>
+      </v-btn>
+      <v-btn @click="isUpdate = !isUpdate">
+        <v-icon small>
+          mdi-update
+        </v-icon>
+      </v-btn>
+      <BlogUpdate v-show="isUpdate" :blog="blog" @close="closeUpdateForm" />
+    </div>
+    <div v-else />
   </v-card>
 </template>
 
 <script>
 import { deleteDoc, doc } from '@firebase/firestore'
-import { db } from '../plugins/firebase'
+import { onAuthStateChanged } from '@firebase/auth'
+import { auth, db } from '../plugins/firebase'
 import BlogUpdate from '../pages/blog-update'
 
 export default {
@@ -35,8 +39,14 @@ export default {
   },
   data () {
     return {
-      isUpdate: false
+      isUpdate: false,
+      user: ''
     }
+  },
+  mounted () {
+    onAuthStateChanged(auth, (user) => {
+      this.user = user
+    })
   },
   methods: {
     remove (id) {
