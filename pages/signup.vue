@@ -12,7 +12,7 @@
     <div>{{ message }}</div>
     <div>
       <nuxt-link to="/login">
-        Login Account
+        ログインはこちら
       </nuxt-link>
     </div>
     <div>

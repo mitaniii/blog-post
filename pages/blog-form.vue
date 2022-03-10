@@ -58,7 +58,11 @@
               </v-col>
             </v-row>
           </div>
-          <div v-else />
+          <div v-else>
+            <nuxt-link to="/login">
+              ログインしてください
+            </nuxt-link>
+          </div>
         </v-form>
       </v-container>
     </v-main>

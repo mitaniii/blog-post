@@ -9,7 +9,7 @@
     <div>{{ message }}</div>
     <div>
       <nuxt-link to="/signup">
-        Create Account
+        新規アカウント作成はこちら
       </nuxt-link>
     </div>
     <div>

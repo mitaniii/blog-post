@@ -78,8 +78,10 @@ export default {
       this.user = user
     })
   },
-  logout () {
-    signOut(auth).then(() => (this.user = null))
+  methods: {
+    logout () {
+      signOut(auth).then(() => (this.user = null))
+    }
   }
 }
 </script>
