@@ -96,6 +96,7 @@ export default {
         addDoc(usersCollectionRef, {
           comment: this.comment,
           blogId: this.blog.id,
+          userUid: this.user.uid,
           timestamp: serverTimestamp()
         }).then(() => {
           this.comment = ''
