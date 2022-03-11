@@ -55,8 +55,6 @@ export default {
           content: this.content,
           timestamp: serverTimestamp()
         }).then(() => {
-          // this.title = ''
-          // this.content = ''
           this.$emit('close')
         })
       }

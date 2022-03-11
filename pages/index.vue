@@ -37,18 +37,16 @@
       </v-toolbar-subtitle>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
-    <v-main>
-      <v-container>
-        <v-app>
-          <v-content>
-            <div class="text-center">
-              <BlogCards v-for="blog in displayBlogs" :key="blog.index" :blog="blog" />
-              <v-pagination v-model="page" :length="length" @input="pageChange" />
-            </div>
-          </v-content>
-        </v-app>
-      </v-container>
-    </v-main>
+    <v-container>
+      <v-app>
+        <v-content>
+          <div class="text-center">
+            <BlogCards v-for="blog in displayBlogs" :key="blog.index" :blog="blog" />
+            <v-pagination v-model="page" :length="length" @input="pageChange" />
+          </div>
+        </v-content>
+      </v-app>
+    </v-container>
   </v-app>
 </template>
 
