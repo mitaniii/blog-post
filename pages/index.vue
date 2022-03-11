@@ -16,26 +16,25 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app>
+    <v-app-bar app color="#00E676">
+      <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title class="mx-auto">
-        <v-btn to="/">
-          Blog-Post-App
+        <v-btn color="#00E676" to="/">
+          ブログアプリ
         </v-btn>
       </v-toolbar-title>
+      <v-spacer />
       <v-toolbar-subtitle v-if="user">
-        <p>
-          {{ user.displayName }}さん
-          <v-btn @click="logout">
-            ログアウト
-          </v-btn>
-        </p>
+        {{ user.displayName }}さん
+        <v-btn class="mx-5" @click="logout">
+          ログアウト
+        </v-btn>
       </v-toolbar-subtitle>
       <v-toolbar-subtitle v-else>
         <nuxt-link to="/login">
           ログイン
         </nuxt-link>
       </v-toolbar-subtitle>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
     <v-container>
       <v-app>
@@ -73,7 +72,6 @@ export default {
       blogs: [],
       displayBlogs: [],
       pageSize: 3,
-      isUpdate: false,
       items: [
         {
           icon: 'mdi-account-circle',
