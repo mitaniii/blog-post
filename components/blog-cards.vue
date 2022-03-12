@@ -1,6 +1,6 @@
 <template>
   <v-card class="my-5">
-    <v-subheader class="green accent-3">
+    <v-card-title class="green accent-3">
       {{ blog.userDisplayName }}さんの投稿
       <v-spacer />
       <v-card>
@@ -35,10 +35,19 @@
       <v-icon @click="isUserContent = !isUserContent">
         mdi-chevron-down
       </v-icon>
-    </v-subheader>
-    <v-subheader>タイトル：{{ blog.title }}</v-subheader>
-    <v-list-item-subtitle>記事：{{ blog.content }}</v-list-item-subtitle>
-    <v-list-item>更新：{{ blog.timestamp.toDate() }}</v-list-item>
+    </v-card-title>
+    <v-card-title class="text-subtitle-1">
+      タイトル：{{ blog.title }}
+    </v-card-title>
+    <v-list class="overflow-y-auto" color="green" height="150">
+      <v-card-title>
+        記事：{{ blog.content }}
+      </v-card-title>
+    </v-list>
+    <v-list-item class="text-caption">
+      {{ blog.timestamp.toDate() }}
+    </v-list-item>
+    <div>コメントを見る</div>
     <v-icon @click="ischeck = !ischeck">
       mdi-chevron-down
     </v-icon>

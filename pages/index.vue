@@ -24,18 +24,29 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
-      <v-toolbar-subtitle v-if="user">
-        {{ user.displayName }}さん
-        <v-btn class="mx-5" @click="logout">
-          ログアウト
-        </v-btn>
-      </v-toolbar-subtitle>
-      <v-toolbar-subtitle v-else>
-        <nuxt-link to="/login">
-          ログイン
-        </nuxt-link>
-      </v-toolbar-subtitle>
+      <v-icon @click="isUser = !isUser">
+        mdi-chevron-down
+      </v-icon>
     </v-app-bar>
+    <v-container>
+      <v-row>
+        <v-content>
+          <div v-show="isUser">
+            <v-toolbar-subtitle v-if="user">
+              {{ user.displayName }}さん
+              <v-btn class="mx-5" @click="logout">
+                ログアウト
+              </v-btn>
+            </v-toolbar-subtitle>
+            <v-toolbar-subtitle v-else>
+              <nuxt-link to="/login">
+                ログイン
+              </nuxt-link>
+            </v-toolbar-subtitle>
+          </div>
+        </v-content>
+      </v-row>
+    </v-container>
     <v-container>
       <v-app>
         <v-content>
@@ -64,6 +75,7 @@ export default {
   data () {
     return {
       drawer: false,
+      isUser: false,
       user: '',
       title: '',
       content: '',
