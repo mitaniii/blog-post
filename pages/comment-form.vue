@@ -1,32 +1,28 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-container>
-        <v-form @submit.prevent="addComment">
-          <div v-if="user">
-            <v-row>
-              <v-col cols="12" sm="10">
-                <v-textarea v-model="comment" label="Comment" />
-              </v-col>
-              <v-col cols="12" sm="10">
-                <v-btn type="submit" color="primary">
-                  コメントする
-                </v-btn>
-              </v-col>
-              <v-col cols="12">
-                {{ message }}
-              </v-col>
-            </v-row>
-          </div>
-          <div v-else>
-            <nuxt-link to="/login">
-              ログインしてください
-            </nuxt-link>
-          </div>
-        </v-form>
-      </v-container>
-    </v-main>
-  </v-app>
+  <v-container>
+    <v-form @submit.prevent="addComment">
+      <div v-if="user">
+        <v-row>
+          <v-col cols="12" sm="10">
+            <v-textarea v-model="comment" label="Comment" />
+          </v-col>
+          <v-col cols="12" sm="10">
+            <v-btn type="submit" color="primary">
+              コメントする
+            </v-btn>
+          </v-col>
+          <v-col cols="12">
+            {{ message }}
+          </v-col>
+        </v-row>
+      </div>
+      <div v-else>
+        <nuxt-link to="/login">
+          ログインしてください
+        </nuxt-link>
+      </div>
+    </v-form>
+  </v-container>
 </template>
 
 <script>

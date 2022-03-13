@@ -17,20 +17,20 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app color="#00E676">
-      <v-app-bar-nav-icon @click="drawer = !drawer" />
+      <v-app-bar-nav-icon dark @click="drawer = !drawer" />
       <v-toolbar-title class="mx-auto">
-        <v-btn color="#00E676" to="/">
+        <v-btn class="text-h6" to="/" text dark>
           ブログアプリ
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
-      <v-icon @click="isUser = !isUser">
+      <v-icon dark @click="isUser = !isUser">
         mdi-chevron-down
       </v-icon>
     </v-app-bar>
     <v-container>
       <v-row>
-        <v-content>
+        <v-content class="text-right">
           <div v-show="isUser">
             <v-toolbar-subtitle v-if="user">
               {{ user.displayName }}さん
@@ -39,9 +39,9 @@
               </v-btn>
             </v-toolbar-subtitle>
             <v-toolbar-subtitle v-else>
-              <nuxt-link to="/login">
+              <v-btn class="mx-5" to="/login">
                 ログイン
-              </nuxt-link>
+              </v-btn>
             </v-toolbar-subtitle>
           </div>
         </v-content>

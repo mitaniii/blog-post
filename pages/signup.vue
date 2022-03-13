@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <h1>Sign up</h1>
+    <h1>新規登録</h1>
     <v-text-field v-model="email" type="email" label="Email" />
     <v-text-field v-model="password" type="password" label="Password" />
     <v-text-field v-model="confirmPassword" type="password" label="confirmPassword" />
     <v-text-field v-model="name" type="text" label="Name" />
 
     <v-btn @click.prevent="signup">
-      Sign up
+      新規登録
     </v-btn>
     <div>{{ message }}</div>
     <div>

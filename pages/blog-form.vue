@@ -1,56 +1,22 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list>
-        <v-list-item v-for="item in items" :key="item.title" :to="item.to">
-          <v-list-item-action>
-            <v-icon>
-              {{ item.icon }}
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ item.title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar app>
-      <v-toolbar-title class="mx-auto">
-        <v-btn to="/">
-          Blog-Post-App
-        </v-btn>
-      </v-toolbar-title>
-      <v-toolbar-subtitle v-if="user">
-        <p>
-          {{ user.displayName }}さん
-          <v-btn @click="logout">
-            ログアウト
-          </v-btn>
-        </p>
-      </v-toolbar-subtitle>
-      <v-toolbar-subtitle v-else>
-        <nuxt-link to="/login">
-          ログイン
-        </nuxt-link>
-      </v-toolbar-subtitle>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-    </v-app-bar>
     <v-main>
       <v-container>
         <v-form @submit.prevent="addBlog">
           <div v-if="user">
             <v-row>
               <v-col cols="12" sm="10">
-                <v-text-field v-model="title" label="Title" />
+                <v-text-field v-model="title" label="タイトル" />
               </v-col>
               <v-col cols="12" sm="10">
-                <v-textarea v-model="content" label="Content" />
+                <v-textarea v-model="content" label="記事" />
               </v-col>
               <v-col cols="12" sm="10">
-                <v-btn type="submit" color="primary">
+                <v-btn type="submit" color="#00E676" dark>
                   投稿
+                </v-btn>
+                <v-btn color="#00E676" to="/" dark>
+                  一覧に戻る
                 </v-btn>
               </v-col>
               <v-col cols="12">

@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <h1>Login</h1>
+    <h1>ログイン</h1>
     <v-text-field v-model="email" type="email" label="Email" />
     <v-text-field v-model="password" type="password" label="Password" />
     <v-btn @click.prevent="login">
-      Login
+      ログイン
     </v-btn>
     <div>{{ message }}</div>
     <div>

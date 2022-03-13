@@ -8,19 +8,19 @@
           <div v-if="user">
             <v-card-text>
               <v-chip-group v-model="selection" active-class="green accent-3 white--text" column>
-                <v-chip>
-                  <v-icon @click="isComment = !isComment">
+                <v-chip @click="isComment = !isComment">
+                  <v-icon>
                     mdi-cat
                   </v-icon>
                 </v-chip>
                 <div v-if="user && blog.userUid === user.uid">
-                  <v-chip>
-                    <v-icon @click="remove(blog.id)">
+                  <v-chip @click="remove(blog.id)">
+                    <v-icon>
                       mdi-delete
                     </v-icon>
                   </v-chip>
-                  <v-chip>
-                    <v-icon @click="isUpdate = !isUpdate">
+                  <v-chip @click="isUpdate = !isUpdate">
+                    <v-icon>
                       mdi-update
                     </v-icon>
                   </v-chip>
@@ -33,13 +33,15 @@
       </v-card>
       <v-spacer />
       <v-icon @click="isUserContent = !isUserContent">
-        mdi-chevron-down
+        mdi-format-list-bulleted
       </v-icon>
     </v-card-title>
-    <v-card-title class="text-subtitle-1">
-      タイトル：{{ blog.title }}
-    </v-card-title>
-    <v-list class="overflow-y-auto" color="green" height="150">
+    <v-list color="green lighten-4">
+      <v-card-title class="text-subtitle-1">
+        タイトル：{{ blog.title }}
+      </v-card-title>
+    </v-list>
+    <v-list class="overflow-y-auto" height="150">
       <v-card-title>
         記事：{{ blog.content }}
       </v-card-title>
@@ -49,21 +51,23 @@
     </v-list-item>
     <div>コメントを見る</div>
     <v-icon @click="ischeck = !ischeck">
-      mdi-chevron-down
+      mdi-unfold-more-horizontal
     </v-icon>
-    <div v-show="ischeck">
+    <div v-show="ischeck" class="overflow-x-auto" width="150">
       <div v-for="comment in displayComments" :key="comment.index">
         <div v-if="comment.blogId === blog.id">
           <v-subheader>
-            <v-list-item>
-              {{ comment.comment }}
-              <v-spacer />
-              <div v-if="user && comment.userUid === user.uid">
-                <v-icon small @click="commentRemove(comment.id)">
-                  mdi-delete
-                </v-icon>
-              </div>
-            </v-list-item>
+            <v-col cols="12">
+              <v-list-item>
+                {{ comment.comment }}
+                <v-spacer />
+                <div v-if="user && comment.userUid === user.uid">
+                  <v-icon small @click="commentRemove(comment.id)">
+                    mdi-delete
+                  </v-icon>
+                </div>
+              </v-list-item>
+            </v-col>
           </v-subheader>
         </div>
       </div>
