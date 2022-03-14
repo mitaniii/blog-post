@@ -7,10 +7,10 @@
         <div v-show="isUserContent">
           <div v-if="user">
             <v-card-text>
-              <v-chip-group v-model="selection" active-class="green accent-3 white--text" column>
+              <v-chip-group active-class="green accent-3 white--text">
                 <v-chip @click="isComment = !isComment">
                   <v-icon>
-                    mdi-cat
+                    mdi-comment-processing-outline
                   </v-icon>
                 </v-chip>
                 <div v-if="user && blog.userUid === user.uid">

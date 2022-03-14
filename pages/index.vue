@@ -19,7 +19,7 @@
     <v-app-bar app color="#00E676">
       <v-app-bar-nav-icon dark @click="drawer = !drawer" />
       <v-toolbar-title class="mx-auto">
-        <v-btn class="text-h6" to="/" text dark>
+        <v-btn class="text-h6" text dark>
           ブログアプリ
         </v-btn>
       </v-toolbar-title>
