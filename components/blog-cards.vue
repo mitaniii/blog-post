@@ -73,8 +73,10 @@
       </div>
       <v-pagination v-model="page" :length="length" @input="pageChange" />
     </div>
-    <CommentForm v-show="isComment" :blog="blog" @close="closeCommentForm" />
-    <BlogUpdate v-show="isUpdate" :blog="blog" @close="closeUpdateForm" />
+    <CommentForm v-show="isComment" :blog="blog" />
+    <BlogUpdate v-show="isUpdate" :blog="blog" />
+    <!-- <CommentForm v-show="isComment" :blog="blog" @close="closeCommentForm" />
+    <BlogUpdate v-show="isUpdate" :blog="blog" @close="closeUpdateForm" /> -->
   </v-card>
 </template>
 
@@ -130,12 +132,12 @@ export default {
     commentRemove (id) {
       const userDocumentRef = doc(db, 'comments', id)
       deleteDoc(userDocumentRef)
-    },
-    closeUpdateForm () {
-      this.isUpdate = false
-    },
-    closeCommentForm () {
-      this.isComment = false
+    // },
+    // closeUpdateForm () {
+    //   this.isUpdate = false
+    // },
+    // closeCommentForm () {
+    //   this.isComment = false
     },
     pageChange (pageNumber) {
       this.displayComments = this.comments.slice(this.pageSize * (pageNumber - 1), this.pageSize * (pageNumber))
